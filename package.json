@@ -3,13 +3,9 @@
   "version": "2.15.0",
   "license": "MIT",
   "author": {
-    "name": "Yassine Fathi",
-    "url": "https://m4tt72.com",
-    "email": "hi@m4tt72.com"
-  },
-  "funding": {
-    "type": "Paypal",
-    "url": "https://paypal.me/yfthi"
+    "name": "Umar Khorami",
+    "url": "https://umarkhorami.com",
+    "email": "umar.khorami@gmail.com"
   },
   "repository": {
     "type": "git",
