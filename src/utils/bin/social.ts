@@ -17,3 +17,9 @@ export const linkedin = async (args: string[]): Promise<string> => {
 
   return 'Opening linkedin...';
 };
+
+export const status = async (args: string[]): Promise<string> => {
+  window.open(`https://stats.uptimerobot.com/DZPK4FjD9n/`);
+
+  return 'Opening Status...';
+};
