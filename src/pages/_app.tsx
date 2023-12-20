@@ -20,6 +20,7 @@ const App = ({ Component, pageProps }) => {
 
   return (
     <ThemeProvider>
+      <SpeedInsights />
       <ShellProvider>
         <Head>
           <meta
@@ -28,7 +29,7 @@ const App = ({ Component, pageProps }) => {
             key="viewport"
           />
         </Head>
-        <SpeedInsights />
+        
 
         <Layout onClick={onClickAnywhere}>
           <Component {...pageProps} inputRef={inputRef} />
