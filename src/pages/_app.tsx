@@ -1,3 +1,4 @@
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { createInstance, MatomoProvider } from '@m4tt72/matomo-tracker-react';
 import Head from 'next/head';
 import React, { useEffect } from 'react';
@@ -27,12 +28,15 @@ const App = ({ Component, pageProps }) => {
             key="viewport"
           />
         </Head>
+        <SpeedInsights />
 
         <Layout onClick={onClickAnywhere}>
           <Component {...pageProps} inputRef={inputRef} />
         </Layout>
       </ShellProvider>
+      
     </ThemeProvider>
+
   );
 };
 
