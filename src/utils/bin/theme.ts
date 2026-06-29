@@ -9,27 +9,25 @@ export const theme = async (
 Args:
   - ls: list all themes
   - set: set a theme
-  - random: set a random theme
 
 Example: 
-  theme ls # to list all themes
-  theme set Gruvbox # to set a theme`;
+  theme ls 
+  theme set nord`;
   }
 
-  switch (args[0]) {
+  switch (args[0].toLowerCase()) {
     case 'ls':
-      let result = Themes.map((theme) => theme.name.toLowerCase()).join(', ');
+      let result = Themes.map((theme) => theme.name).join(', ');
       result += '\n\n';
-      result += `You can preview all these themes <a href="https://github.com/m4tt72/terminal/tree/master/docs/themes">in the docs</a>`;
-
+      result += `Type 'theme set <name>' to apply one.`;
       return result;
+      
     case 'set':
       const selectedTheme = args[1];
-
+      if (!selectedTheme) return "Please specify a theme. Example: theme set paper";
       return callback(selectedTheme);
-    case 'random':
-      const randomTheme = Themes[Math.floor(Math.random() * Themes.length)];
-
-      return callback(randomTheme.name.toLowerCase());
+      
+    default:
+      return `Invalid argument. Try 'theme ls' to see available themes.`;
   }
 };

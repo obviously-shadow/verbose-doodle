@@ -5,10 +5,6 @@ const config = {
   ],
   darkMode: 'media',
   theme: {
-    colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
-    },
     extend: {},
   },
   variants: {

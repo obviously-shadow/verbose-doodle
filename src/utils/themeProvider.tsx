@@ -21,13 +21,12 @@ export const ThemeProvider: React.FC<Props> = ({ children }) => {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
-
     setTheme(savedTheme || config.theme);
   }, []);
 
   const setTheme = (name: string) => {
     const index = Themes.findIndex(
-      (colorScheme) => colorScheme.name.toLowerCase() === name,
+      (colorScheme) => colorScheme.name.toLowerCase() === name.toLowerCase()
     );
 
     if (index === -1) {
@@ -35,10 +34,9 @@ export const ThemeProvider: React.FC<Props> = ({ children }) => {
     }
 
     _setTheme(Themes[index]);
+    localStorage.setItem('theme', Themes[index].name);
 
-    localStorage.setItem('theme', name);
-
-    return `Theme ${Themes[index].name} set successfully!`;
+    return `Theme switched to ${Themes[index].name}!`;
   };
 
   return (

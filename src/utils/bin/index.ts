@@ -4,6 +4,8 @@ export * from './social';
 export * from './theme';
 export * from './utils';
 export * from './weather';
-export * from './neofetch';
-export * from './cowsay';
-export * from './certificates'
+export * from './certificates';
+export * from './skills';
+export * from './setup';
+export * from './calc';
+export * from './exchange';
