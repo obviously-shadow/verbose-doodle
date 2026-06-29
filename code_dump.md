@@ -157,7 +157,7 @@ google.com, pub-4683229091490977, DIRECT, f08c47fec0942fa0
 ```json
 {
   "name": "terminal",
-  "version": "2.15.0",
+  "version": "3.1.0",
   "license": "MIT",
   "author": {
     "name": "Umar Khorami",
@@ -498,20 +498,16 @@ const Layout = ({ children, onClick }) => {
           </div>
 
           {/* Certifications Card */}
-          <div className="bg-slate-900 border border-slate-800 p-8 rounded-3xl shadow-xl flex flex-col">
-            <div className="flex items-center gap-3 mb-4">
-              <FaAward className="text-2xl text-yellow-500" />
-              <h2 className="text-2xl font-bold text-white">Certifications</h2>
+          <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-3xl flex flex-col hover:border-zinc-700 transition-colors">
+            <h2 className="text-lg font-semibold text-zinc-100 mb-4 flex items-center gap-2">
+              <FaAward /> Credentials
+            </h2>
+            <div className="flex flex-col gap-2">
+              <a href="/1.pdf" target="_blank" className="text-sm text-zinc-400 hover:text-blue-400">• Web Deployment Basics</a>
+              <a href="/backend.pdf" target="_blank" className="text-sm text-zinc-400 hover:text-blue-400">• Backend Engineering</a>
+              <a href="/html.pdf" target="_blank" className="text-sm text-zinc-400 hover:text-blue-400">• HTML5 Fundamentals</a>
+              <a href="/javascript.pdf" target="_blank" className="text-sm text-zinc-400 hover:text-blue-400">• JavaScript Mastery</a>
             </div>
-            <p className="text-slate-400 text-sm mb-4 leading-relaxed">
-              Continuously expanding my knowledge base through structured learning paths.
-            </p>
-            <button 
-              onClick={() => window.open('https://01965b72-97fc-4eb8-8d16-6dee14c3e6c2-00-3p0kn903rtz04.picard.replit.dev/', '_blank')}
-              className="mt-auto bg-slate-800 hover:bg-slate-700 text-white py-3 px-4 rounded-xl text-sm font-medium transition-colors border border-slate-700"
-            >
-              View Certificates ↗
-            </button>
           </div>
 
           {/* Return Button */}
@@ -992,10 +988,28 @@ export const calc = async (args: string[]): Promise<string> => {
 ### File: `src\utils\bin\certificates.ts`
 ```ts
 export const certs = async (args: string[]): Promise<string> => {
-    window.open(`https://01965b72-97fc-4eb8-8d16-6dee14c3e6c2-00-3p0kn903rtz04.picard.replit.dev/`);
-  
-    return 'Opening Certificates...';
-  };
+  const certList = [
+    { name: "Web Deployment", file: "/1.pdf" },
+    { name: "Backend Engineering", file: "/backend.pdf" },
+    { name: "HTML Fundamentals", file: "/html.pdf" },
+    { name: "JS Mastery", file: "/javascript.pdf" }
+  ];
+
+  if (args[0] === 'open' && args[1]) {
+    const target = certList.find(c => c.name.toLowerCase().includes(args[1].toLowerCase()));
+    if (target) {
+      window.open(target.file, '_blank');
+      return `Opening ${target.name}...`;
+    }
+    return "Certificate not found. Use 'certs' to see the list.";
+  }
+
+  return `Active Certifications:
+------------------------
+${certList.map(c => `* ${c.name}`).join('\n')}
+
+Usage: certs open <name>`;
+};
 ```
 
 
@@ -1438,18 +1452,17 @@ import packageJson from '../../../package.json';
 import * as bin from './index';
 
 export const help = async (args: string[]): Promise<string> => {
-  return `Available Commands:
--------------------
+  return `Commands:
 about        A bit about me
 skills       My programming languages & tools
 setup        My PC and home server specs
+handyman     My local business
 projects     Fetch my GitHub repositories
+social       My social links
 certs        View my active certifications
-social       My social media & contact links
-exchange     [NEW] Check live currency exchange spreads
+theme        Change terminal theme
+weather      Check the weather
 calc         Evaluate math (e.g., calc 10 * 5)
-weather      Check the local weather
-theme        Change the terminal theme
 gui          Open the visual portfolio dashboard
 clear        Clear the terminal`;
 };
@@ -1475,12 +1488,12 @@ export const sudo = async (args?: string[]): Promise<string> => {
 
 export const banner = (args?: string[]): string => {
   return `
-██╗   ██╗███╗   ███╗███████╗██████╗ 
-██║   ██║████╗ ████║██╔════╝██╔══██╗
-██║   ██║██╔████╔██║█████╗  ██████╔╝
-██║   ██║██║╚██╔╝██║██╔══╝  ██╔══██╗
-╚██████╔╝██║ ╚═╝ ██║███████╗██║  ██║
- ╚═════╝ ╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝ v${packageJson.version}
+██╗   ██╗███╗   ███╗ █████╗ ██████╗ 
+██║   ██║████╗ ████║██╔══██╗██╔══██╗
+██║   ██║██╔████╔██║███████║██████╔╝
+██║   ██║██║╚██╔╝██║██╔══██║██╔══██╗
+╚██████╔╝██║ ╚═╝ ██║██║  ██║██║  ██║
+ ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ v${packageJson.version}
 
 Hey, I'm Umar. Type 'help' to see a list of available commands.
 Type 'gui' to view the visual portfolio.

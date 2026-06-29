@@ -1,10 +1,11 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
 
-// Fix: Use import.meta.dirname for ES Modules
-const ROOT_DIR = import.meta.dirname;
+// Fix: Get the directory name safely in ESM
+const __filename = fileURLToPath(import.meta.url);
+const ROOT_DIR = path.dirname(__filename);
 const OUTPUT_FILE = path.join(ROOT_DIR, 'code_dump.md');
-
 const IGNORE_DIRS = new Set(['node_modules', '.next', '.git', 'public', '.vscode']);
 const IGNORE_EXTS = new Set(['.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.woff', '.woff2']);
 const IGNORE_FILES = new Set(['package-lock.json', 'dump.ts', 'code_dump.md', '.DS_Store', 'tsconfig.json', 'next.config.js', 'README.md', 'yarn.lock', 'pnpm-lock.yaml', '.eslintrc.json', '.prettierrc', '.gitignore', '.npmrc']);
